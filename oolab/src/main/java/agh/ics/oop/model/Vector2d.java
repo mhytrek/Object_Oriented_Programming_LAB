@@ -1,7 +1,5 @@
 package agh.ics.oop.model;
 
-import java.util.Vector;
-
 public class Vector2d {
     private final int x;
     private final int y;
@@ -28,13 +26,13 @@ public class Vector2d {
 
     Vector2d add(Vector2d other){
         int x3 = this.x + other.x;
-        int y3 = this.y + this.x;
+        int y3 = this.y + other.y;
         return new Vector2d(x3, y3);
     }
 
     Vector2d subtract(Vector2d other){
         int x3 = this.x - other.x;
-        int y3 = this.y - this.x;
+        int y3 = this.y - other.y;
         return new Vector2d(x3, y3);
     }
 
