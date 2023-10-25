@@ -8,6 +8,13 @@ public class Vector2d {
         this.x = x;
         this.y = y;
     }
+    public int getX(){
+        return this.x;
+    }
+
+    public int getY(){
+        return this.y;
+    }
     public String toString(){
         return "(" + this.x + "," + this.y +")";
     }
@@ -88,4 +95,18 @@ public class Vector2d {
             return true;
         } else return false;
     }
+
+    public boolean hashcode(Object other) {
+        if (this == other) {
+            return true;
+        }
+        if (!(other instanceof Vector2d)) {
+            return false;
+        }
+        Vector2d that = (Vector2d) other;
+        if (that.x == this.x && that.y == this.y) {
+            return true;
+        } else return false;
+    }
+
 }
