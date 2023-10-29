@@ -30,7 +30,6 @@ public class Animal {
         Vector2d vector_min = new Vector2d(0,0);
         Vector2d vector_max = new Vector2d(4,4);
         if(this.position.follows(vector_max) || this.position.precedes(vector_min)){
-            System.out.println("wyzerowane");
             this.position = copy_position;
         }
     }
