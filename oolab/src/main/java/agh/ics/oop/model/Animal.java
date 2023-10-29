@@ -29,7 +29,7 @@ public class Animal {
         }
         Vector2d vector_min = new Vector2d(0,0);
         Vector2d vector_max = new Vector2d(4,4);
-        if(this.position.follows(vector_max) || this.position.precedes(vector_min)){
+        if (!(this.position.follows(vector_min) && this.position.precedes(vector_max))){
             this.position = copy_position;
         }
     }
