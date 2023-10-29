@@ -1,5 +1,6 @@
 package agh.ics.oop;
 
+import agh.ics.oop.model.Animal;
 import agh.ics.oop.model.MoveDirection;
 
 public class World {
@@ -17,6 +18,8 @@ public class World {
 
     public static void main(String[] args){
         System.out.println("System wystartował");
+        Animal Cynamon = new Animal();
+        System.out.println(Cynamon.toString());
         run(OptionsParser.change_string_enum(args));
         System.out.println("System zakończył działania");
     }
