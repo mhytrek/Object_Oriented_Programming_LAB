@@ -18,7 +18,7 @@ public class SimulationiTest {
         simulation1.run();
 
         Animal animal1 = simulation1.animals.get(0);
-        assertEquals( "Pozycja: (0, 1) Orientacja: Zachód",animal1.toString());
+        assertEquals( "Pozycja: (0,1) Orientacja: Zachód",animal1.toString());
 
         String[] args2 = {"b", "f", "r", "l", "o"};
         List<MoveDirection> directions2 = OptionsParser.change_string_enum(args2);
@@ -28,8 +28,8 @@ public class SimulationiTest {
 
         Animal animal2 = simulation2.animals.get(0);
         Animal animal3 = simulation2.animals.get(1);
-        assertEquals( "Pozycja: (0, 0) Orientacja: Wschód",animal2.toString());
-        assertEquals( "Pozycja: (1, 4) Orientacja: Zachód",animal3.toString());
+        assertEquals( "Pozycja: (0,0) Orientacja: Wschód",animal2.toString());
+        assertEquals( "Pozycja: (1,4) Orientacja: Zachód",animal3.toString());
 
     }
 }
