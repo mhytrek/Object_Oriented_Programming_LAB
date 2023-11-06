@@ -24,12 +24,12 @@ public class RectangularMap implements WorldMap{
 
     @Override
     public boolean place(Animal animal){
-        if (this.isOccupied(animal.getPosition())){
-            return false;
-        }
-        else{
+        if (this.canMoveTo(animal.getPosition())){
             animals.put(animal.getPosition(), animal);
             return true;
+        }
+        else{
+            return false;
         }
     }
 
