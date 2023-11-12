@@ -5,7 +5,7 @@ import agh.ics.oop.MapVisualizer;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RectangularMap implements WorldMap{
+public class RectangularMap extends AbstractWorldMap implements WorldMap{
     private final int height;
     private final int width;
     private Vector2d lower_left;
@@ -22,40 +22,40 @@ public class RectangularMap implements WorldMap{
         this.mapVisualizer = new  MapVisualizer(this);
     }
 
-    @Override
-    public boolean place(Animal animal){
-        if (this.canMoveTo(animal.getPosition())){
-            animals.put(animal.getPosition(), animal);
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
+//    @Override
+//    public boolean place(Animal animal){
+//        if (this.canMoveTo(animal.getPosition())){
+//            animals.put(animal.getPosition(), animal);
+//            return true;
+//        }
+//        else{
+//            return false;
+//        }
+//    }
 
-    @Override
-    public void move(Animal animal, MoveDirection direction){
-        if(animals.containsValue(animal)){
-            Vector2d p = animal.getPosition();
-            animals.remove(animal.getPosition());
-            animal.move(direction, this);
-            place(animal);
-        }
-    }
+//    @Override
+//    public void move(Animal animal, MoveDirection direction){
+//        if(animals.containsValue(animal)){
+//            Vector2d p = animal.getPosition();
+//            animals.remove(animal.getPosition());
+//            animal.move(direction, this);
+//            place(animal);
+//        }
+//    }
 
-    @Override
-    public boolean isOccupied(Vector2d position){
-        return (animals.containsKey(position));
-    }
+//    @Override
+//    public boolean isOccupied(Vector2d position){
+//        return (animals.containsKey(position));
+//    }
 
-    @Override
-    public Animal objectAt(Vector2d position){
-        return animals.get(position);
-    }
+//    @Override
+//    public WorldElement objectAt(Vector2d position){
+//        return animals.get(position);
+//    }
 
     @Override
     public boolean canMoveTo(Vector2d position) {
-        if(isOccupied(position) | !(position.follows(lower_left) && position.precedes(upper_right))){
+        if(!(super.canMoveTo(position)) | !(position.follows(lower_left) && position.precedes(upper_right))){
             return false;
         }
         return true;
