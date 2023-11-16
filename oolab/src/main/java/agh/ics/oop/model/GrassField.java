@@ -13,7 +13,7 @@ public class GrassField extends AbstractWorldMap implements WorldMap{
     private Vector2d upper_right;
     Map<Vector2d, Animal> animals;
     Map<Vector2d, Grass> grass;
-    MapVisualizer mapVisualizer;
+//    MapVisualizer mapVisualizer;
 
     public GrassField(int grass_amount){
         this.grass_amount=grass_amount;
@@ -72,6 +72,17 @@ public class GrassField extends AbstractWorldMap implements WorldMap{
     }
 
     @Override
+    Boundary getCurrentBounds() {
+        Set<Vector2d> vectors = new HashSet<>(animals.keySet());
+        vectors.addAll(grass.keySet());
+        for(Vector2d v: vectors){
+            this.upper_right = this.upper_right.upperRight(v);
+            this.lower_left = this.lower_left.lowerLeft(v);
+        }
+        return new Boundary(this.lower_left,this.upper_right);
+    }
+
+    @Override
     public WorldElement objectAt(Vector2d position) {
         WorldElement element = super.objectAt(position);
         if(element != null){
@@ -81,19 +92,10 @@ public class GrassField extends AbstractWorldMap implements WorldMap{
         }
         return null;
     }
-    @Override
-    public String toString() {
-        Set<Vector2d> vectors = new HashSet<>(animals.keySet());
-        vectors.addAll(grass.keySet());
-        System.out.println(vectors);
-        for(Vector2d v: vectors){
-            this.upper_right = this.upper_right.upperRight(v);
-            this.lower_left = this.lower_left.lowerLeft(v);
-        }
-        System.out.println(this.upper_right);
-        System.out.println(this.lower_left);
-        return mapVisualizer.draw(this.lower_left, this.upper_right);
-    }
+//    @Override
+//    public String toString() {
+//        return mapVisualizer.draw(this.lower_left, this.upper_right);
+//    }
 
     @Override
     public Map<Vector2d, WorldElement> getElements(){

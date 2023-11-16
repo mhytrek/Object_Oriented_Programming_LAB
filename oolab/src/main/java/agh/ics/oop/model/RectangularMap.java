@@ -11,7 +11,7 @@ public class RectangularMap extends AbstractWorldMap implements WorldMap{
     private Vector2d lower_left;
     private Vector2d upper_right;
     Map<Vector2d, Animal> animals;
-    MapVisualizer mapVisualizer;
+//    MapVisualizer mapVisualizer;
 
     public RectangularMap(int height, int width){
         this.height = height;
@@ -54,6 +54,11 @@ public class RectangularMap extends AbstractWorldMap implements WorldMap{
 //    }
 
     @Override
+    Boundary getCurrentBounds() {
+        return new Boundary(this.lower_left, this.upper_right);
+    }
+
+    @Override
     public boolean canMoveTo(Vector2d position) {
         if(!(super.canMoveTo(position)) | !(position.follows(lower_left) && position.precedes(upper_right))){
             return false;
@@ -61,8 +66,8 @@ public class RectangularMap extends AbstractWorldMap implements WorldMap{
         return true;
     }
 
-    @Override
-    public String toString() {
-        return mapVisualizer.draw(lower_left, upper_right);
-    }
+//    @Override
+//    public String toString() {
+//        return mapVisualizer.draw(lower_left, upper_right);
+//    }
 }

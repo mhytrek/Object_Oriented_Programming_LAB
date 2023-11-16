@@ -7,32 +7,33 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RectangularMapTest {
 
     @Test
-    public void testPlace() {
+    public void testPlace() throws PositionAlreadyOccupiedException {
         //given
         RectangularMap map = new RectangularMap(5, 5);
         Animal animal = new Animal(new Vector2d(2, 2));
 
         //then
         assertTrue(map.place(animal));
-        assertFalse(map.place(animal));
+        assertThrows(PositionAlreadyOccupiedException.class, () -> map.place(animal), "Expected grassfield.place(animal) to throw, but it didn't");
     }
 
     @Test
-    public void testMove() {
+    public void testMove() throws PositionAlreadyOccupiedException {
         //given
         RectangularMap map = new RectangularMap(5, 5);
         Animal animal = new Animal(new Vector2d(2, 2));
 
         //when
         map.place(animal);
-        map.move(animal, MoveDirection.FORWARD);
+        map.move(animal,
+                MoveDirection.FORWARD);
 
         //then
         assertEquals(new Vector2d(2, 3), animal.getPosition());
     }
 
     @Test
-    public void testIsOccupied() {
+    public void testIsOccupied() throws PositionAlreadyOccupiedException {
         //given
         RectangularMap map = new RectangularMap(5, 5);
         Animal animal = new Animal(new Vector2d(2, 2));
@@ -46,7 +47,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void testObjectAt() {
+    public void testObjectAt() throws PositionAlreadyOccupiedException {
         //given
         RectangularMap map = new RectangularMap(5, 5);
         Animal animal = new Animal(new Vector2d(2, 2));
@@ -61,7 +62,7 @@ public class RectangularMapTest {
     }
 
     @Test
-    public void testCanMoveTo() {
+    public void testCanMoveTo() throws PositionAlreadyOccupiedException {
         //given
         RectangularMap map = new RectangularMap(5, 5);
         Animal animal = new Animal(new Vector2d(2, 2));
