@@ -4,7 +4,7 @@ import agh.ics.oop.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Simulation {
+public class Simulation implements Runnable{
     public List<Animal> animals;
     public WorldMap map;
     List<MoveDirection> moves;
@@ -27,6 +27,7 @@ public class Simulation {
             }
         }
         this.animals = animals;
+//        System.out.print("Map:" + this.map.getId() + "\n" + this.map.toString());
     }
 
     public void run(){

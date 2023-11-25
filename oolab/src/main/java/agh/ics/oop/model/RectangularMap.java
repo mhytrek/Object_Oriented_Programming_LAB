@@ -4,6 +4,7 @@ import agh.ics.oop.MapVisualizer;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class RectangularMap extends AbstractWorldMap implements WorldMap{
     private final int height;
@@ -14,6 +15,7 @@ public class RectangularMap extends AbstractWorldMap implements WorldMap{
 //    MapVisualizer mapVisualizer;
 
     public RectangularMap(int height, int width){
+        this.id = UUID.randomUUID();
         this.height = height;
         this.width = width;
         this.lower_left = new Vector2d(0,0);
