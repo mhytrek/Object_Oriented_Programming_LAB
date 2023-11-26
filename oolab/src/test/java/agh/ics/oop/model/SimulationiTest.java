@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SimulationiTest {
     @Test
-    public void simulation_integrity_test(){
+    public void simulation_integrity_test() {
         WorldMap map1 = new RectangularMap(4,4);
         String[] args1 = {"f", "f", "b", "l", "r", "ww", "r", "r", "r", "f", "f", "f"};
         List<MoveDirection> directions1 = OptionsParser.change_string_enum(args1);
