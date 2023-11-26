@@ -52,7 +52,7 @@ public class MapVisualizer {
             }
             builder.append(System.lineSeparator());
         }
-        return builder.toString();
+          return builder.toString();
     }
 
     private String drawFrame(boolean innerSegment) {
