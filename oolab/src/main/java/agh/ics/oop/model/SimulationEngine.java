@@ -46,7 +46,7 @@ public class SimulationEngine{
         for(Thread thread: simulationsThreads){
             thread.start();
         }
-        this.awaitSimulationsEnd();
+//        this.awaitSimulationsEnd();
     }
 
     public void runAsyncInThreadPool(){
@@ -55,6 +55,7 @@ public class SimulationEngine{
             executorService.submit(new Thread(simulation));
         }
         executorService.shutdown();
+        this.awaitSimulationsEnd();
     }
 
 

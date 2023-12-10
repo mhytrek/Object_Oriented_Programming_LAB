@@ -56,7 +56,7 @@ public class RectangularMap extends AbstractWorldMap implements WorldMap{
 //    }
 
     @Override
-    Boundary getCurrentBounds() {
+    public Boundary getCurrentBounds() {
         return new Boundary(this.lower_left, this.upper_right);
     }
 

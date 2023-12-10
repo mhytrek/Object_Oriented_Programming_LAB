@@ -73,7 +73,7 @@ public class GrassField extends AbstractWorldMap implements WorldMap{
     }
 
     @Override
-    Boundary getCurrentBounds() {
+    public Boundary getCurrentBounds() {
         Set<Vector2d> vectors = new HashSet<>(animals.keySet());
         vectors.addAll(grass.keySet());
         for(Vector2d v: vectors){
