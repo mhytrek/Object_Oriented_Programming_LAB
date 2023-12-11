@@ -12,7 +12,7 @@ public class SimulationiTest {
     @Test
     public void simulation_integrity_test() {
         WorldMap map1 = new RectangularMap(4,4);
-        String[] args1 = {"f", "f", "b", "l", "r", "ww", "r", "r", "r", "f", "f", "f"};
+        String[] args1 = {"f", "f", "b", "l", "r", "r", "r", "r", "f", "f", "f"};
         List<MoveDirection> directions1 = OptionsParser.change_string_enum(args1);
         List<Vector2d> positions1 = List.of(new Vector2d(0,0));
         Simulation simulation1 = new Simulation(directions1, positions1, map1);

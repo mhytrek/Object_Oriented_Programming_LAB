@@ -2,19 +2,20 @@ package agh.ics.oop.model;
 
 import agh.ics.oop.MapVisualizer;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-abstract class AbstractWorldMap implements WorldMap {
+public abstract class AbstractWorldMap implements WorldMap {
     protected Map<Vector2d, WorldElement> animals = new HashMap<>();
     protected Vector2d lower_left;
     protected Vector2d upper_right;
+    protected UUID id;
     protected List<MapChangeListener> listeners = new ArrayList<>();
     MapVisualizer mapVisualizer;
 
     abstract Boundary getCurrentBounds();
+
+
+
     public void addObserver(MapChangeListener observer) {
         listeners.add(observer);
     }
@@ -30,7 +31,10 @@ abstract class AbstractWorldMap implements WorldMap {
             listener.mapChanged(this, message);
         }
     }
-
+    @Override
+    public UUID getId() {
+        return this.id;
+    }
     @Override
     public String toString() {
         Boundary b = this.getCurrentBounds();
@@ -39,13 +43,14 @@ abstract class AbstractWorldMap implements WorldMap {
         return mapVisualizer.draw(this.lower_left, this.upper_right);
     }
 
-    public void move(Animal animal, MoveDirection direction){
+    public synchronized void move(Animal animal, MoveDirection direction){
         if(animals.containsValue(animal)){
             Vector2d p = animal.getPosition();
             animals.remove(animal.getPosition());
             animal.move(direction, this);
             try {
                 place(animal);
+                this.mapChanged("Zwierzę na " + animal.getPosition().toString());
             } catch (PositionAlreadyOccupiedException e) {
                 System.out.println(e.getMessage());
             }
@@ -56,9 +61,9 @@ abstract class AbstractWorldMap implements WorldMap {
     public boolean place(Animal animal) throws PositionAlreadyOccupiedException {
         if (this.canMoveTo(animal.getPosition())){
             animals.put(animal.getPosition(), animal);
-            this.mapChanged("Zwierzę na " + animal.getPosition().toString());
             return true;
         }
+
         else{
             throw new PositionAlreadyOccupiedException(animal.getPosition());
             }

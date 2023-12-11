@@ -16,6 +16,7 @@ public class GrassField extends AbstractWorldMap implements WorldMap{
 //    MapVisualizer mapVisualizer;
 
     public GrassField(int grass_amount){
+        this.id = UUID.randomUUID();
         this.grass_amount=grass_amount;
         this.animals = new HashMap<>();
         this.grass = new HashMap<>();
