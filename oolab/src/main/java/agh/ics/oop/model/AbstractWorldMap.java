@@ -12,7 +12,7 @@ public abstract class AbstractWorldMap implements WorldMap {
     protected List<MapChangeListener> listeners = new ArrayList<>();
     MapVisualizer mapVisualizer;
 
-    abstract Boundary getCurrentBounds();
+    public abstract Boundary getCurrentBounds();
 
 
 
@@ -26,9 +26,10 @@ public abstract class AbstractWorldMap implements WorldMap {
     }
 
     // Add a method to notify observers about animal placement or movement
-    protected void mapChanged(String message) {
+    public void mapChanged(String message) {
         for (MapChangeListener listener : listeners) {
             listener.mapChanged(this, message);
+
         }
     }
     @Override

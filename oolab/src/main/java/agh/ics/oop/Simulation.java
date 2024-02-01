@@ -35,6 +35,11 @@ public class Simulation implements Runnable{
             int index = animals.indexOf(animal);
             for(int j = index; j < moves.size(); j += animals.size()){
                 map.move(animal, moves.get(j));
+                try {
+                    Thread.sleep(500);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
 //                System.out.println(map.toString());
             }
         }

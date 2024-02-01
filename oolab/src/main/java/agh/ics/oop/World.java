@@ -49,18 +49,18 @@ public class World {
 //        engine.awaitSimulationsEnd();
 
         List<Simulation> simulations = new ArrayList<>();
-        List<MoveDirection> directions = OptionsParser.change_string_enum(args);
+        List<MoveDirection> directions = OptionsParser.change_string_enum(new String[]{"f", "f"});
         List<AbstractWorldMap> maps = new ArrayList<>();
         List<MapChangeListener> listeners = new ArrayList<>();
-        for(int i =0; i < 100; i++){
+        for(int i =0; i < 1; i++){
             maps.add(new GrassField(10));
-            List<Vector2d> positions = List.of(new Vector2d(0,0), new Vector2d(4,4));
+            List<Vector2d> positions = List.of(new Vector2d(1,1), new Vector2d(2,4));
             simulations.add(new Simulation(directions, positions, maps.get(i)));
             listeners.add(new ConsoleMapDisplay());
             maps.get(i).addObserver(listeners.get(i));
         }
         SimulationEngine engine = new SimulationEngine(simulations);
-        engine.runAsync();
+        engine.runAsyncInThreadPool();
         System.out.println("System zakończył działania");
     }
 }
